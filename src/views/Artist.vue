@@ -1,17 +1,16 @@
 <template>
 <div class="artist_tracks">
-  <div>
   <div class="home">
      <div class="tracks_info">
          <div class="track">
            <a  @click='audio_loader(`${info.stream_url}?client_id=a281614d7f34dc30b665dfcaa3ed7505`,`${info.artwork_url}`,`${info.title}`,`${info.user["username"]}`)'><v-icon name="play" />
             </a>
-             <img :src="info.artwork_url" />
+            <img  :src="info.artwork_url ?  info.artwork_url : info['user'].avatar_url" />
           </div>
           <div class="info_player">
             <h3>{{this.info.title}}</h3>
              <router-link :to="'/user/'+info.user_id">
-             <img :src="info['user'].avatar_url" />
+              <img  :src="info['user'].avatar_url" />
                            <span>See More</span>
                 </router-link>
               <ul>
@@ -22,14 +21,7 @@
           </div>
      </div>
   </div>
-  <div class="related_tracks">
-    <div class="track" v-for="track in related">
-       <router-link :to="'/artist/'+track.id">
-               <img :src="track.artwork_url" />
-               <h3>{{track.title}}</h3>
-        </router-link>
-    </div>
-  </div>
+   <Hello  :msg="related" />
   </div>
   <div class="comments">
       <div v-for="comment in   comments">
@@ -41,11 +33,12 @@
        </router-link>
       </div>
   </div>
-  </div>
+
 
 </template>
 
 <script>
+import Hello from "@/components/HelloWorld";
 import {mapActions} from 'vuex';
 
 export default {
@@ -58,6 +51,9 @@ export default {
       comments:null,
 
     }
+  },
+  components:{
+    Hello
   },
 
     methods:{
@@ -105,88 +101,22 @@ export default {
   }
 </script>
 <style lang="scss" scoped>
-  .artist_tracks{
-   width:100%;
-   height:100%;
-   display:grid;
-   grid-template-columns:4fr 1fr;
-   grid-gaps:10px;
-  .home{
-    width:100%;
-    padding:4em;
-    .tracks_info{
-     width:100%;
-     height:20vh;
-     border:2px solid #f00;
-      display:grid;
-          grid-template-columns:repeat(1,1fr 2fr);
-          grid-gap: 13px;
-          padding:0.2em;
-          overflow:hidden;
-     .track{
-       position:relative;
-        width:100%;
-
-     img{
-
-       max-width:100%;
-       position:absolute;
-       left:1%;
-       height:18.3vh;
-     }
-     a{
-       position:absolute;
-       left:40%;
-       z-index:999;
-        .fa-icon{
-               margin-top:2em;
-               color:#fff;
-               visibility: hidden;
-               transition:0.2s all;
-               font-size:2em;
-              }
-
-     }
-        &:hover{
-                 .fa-icon{
-               visibility: visible;
-                 }
-              }
+.artist_tracks{
+ width:100%;
+ height:100%;
+ padding:4em;
+  .tracks_info{
+   width:70%;
+   height:180px;
+   background-color:#f00;
+    .track{
+        position:relative;
+        display:inline-block;
     }
     .info_player{
-      position:relative;
-        width:100%;
-        padding-top:1em;
-      h3{
-        margin-top:0.3em;
-        margin-bottom:0.4em;
-
-      }
-      img{
-         width:4vw;
-         border-radius:100%;
-      }
-      span{
-        color: #909297;
-        font-size: 16px;
-
-      }
-      ul{
-        li{
-         display:inline-block;
-         padding-left:0.6em;
-         padding-top:0.6em;
-
-        }
-      }
-    }
+    position:relative;
+    display:inline-block;
     }
   }
-  .comments{
-  height:100vh;
-  overflow-y:scroll;
-  overflow-x:hidden;
-
-  }
- }
+}
 </style>
