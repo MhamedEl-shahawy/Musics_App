@@ -19,7 +19,7 @@ import {mapGetters,mapActions} from 'vuex';
 export default {
   name: 'app',
 
-
+ 
   methods: {
       ...mapActions(['add_Audio']),
 },
@@ -31,7 +31,26 @@ export default {
 
 </script>
 <style lang="scss">
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  position:relative;
+  height:100%;
+  background-color:#888;
 
+}
+#nav {
+  padding: 30px;
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
+}
 
     .main_player2 {
     .aplayer{
@@ -39,9 +58,9 @@ export default {
       width:100%;
       top:50%;
       margin-top:3em;
-      z-index:9999;
+      z-index:9999; 
     }
     }
-
+  
 
 </style>
