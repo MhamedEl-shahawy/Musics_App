@@ -4,7 +4,7 @@ import router from './router'
 import APlayer from '@moefe/vue-aplayer';
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import store from './store/store.js'
+import store from './store/modules/store.js'
 import 'vue-awesome/icons'
 import Icon from 'vue-awesome/components/Icon'
 

@@ -1,4 +1,5 @@
 <template>
+<div>
 <div class="artist_tracks">
   <div class="home">
      <div class="tracks_info">
@@ -24,7 +25,7 @@
    <Hello  :msg="related" />
   </div>
   <div class="comments">
-      <div v-for="comment in   comments">
+      <div v-for="comment in   comments" :key="2">
       <router-link :to="'/user/'+comment.user_id">
               <img :src="comment.user['avatar_url']" />
               <h3>{{comment.body}}</h3>
@@ -33,7 +34,7 @@
        </router-link>
       </div>
   </div>
-
+</div>
 
 </template>
 
