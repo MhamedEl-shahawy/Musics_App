@@ -73,7 +73,7 @@ export default {
      .get(`https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/tracks/${this.id}/comments?client_id=a281614d7f34dc30b665dfcaa3ed7505`)
      .then(response => {this.comments = response.data;} )
    },
-        ...mapActions(['fetchtodos','add_Audio']),
+    ...mapActions(['fetchtodos','add_Audio']),
     audio_loader(ulr,img,name,art){
          let audios = {
           name:name,
@@ -93,7 +93,6 @@ export default {
     },
      watch: {
           "$route.params.id"(val) {
-           // call the method which loads your initial state
                    window.location.reload()
           },
        },

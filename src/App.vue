@@ -6,10 +6,14 @@
     </div>
     <router-view/>
 
-    <div class="main_player">
-     <div class="main_player2">
-            <aplayer :audio="audios_info" :lrcType="3" />
-    </div>
+    <div class="main-player">
+     <div class="main-player2">
+<!--             <aplayer :audio="singelaudio" :lrcType="3" :autoplay="true" />
+ -->            
+   <av-waveform 
+      :audio-src="singelaudio.url"
+    ></av-waveform>
+   </div>
     </div>
   </div>
 </template>
@@ -19,21 +23,21 @@ import {mapGetters,mapActions} from 'vuex';
 export default {
   name: 'app',
 
+  computed:{
+    ...mapGetters(["singelaudio"])
+  },  
+ mounted () {
+    this.$store.dispatch('get_song');
 
-  methods: {
-      ...mapActions(['add_Audio']),
-},
- computed:mapGetters(['audios_info']),
-    created(){
-     this.add_Audio();
-     }
+  }
+
 }
 
 </script>
 <style lang="scss">
 
 
-    .main_player2 {
+    .main-player2 {
     .aplayer{
       position:fixed;
       width:100%;
