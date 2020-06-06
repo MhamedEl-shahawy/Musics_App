@@ -4,7 +4,7 @@
   <div class="home">
      <div class="tracks_info">
          <div class="track">
-           <a  @click='audio_loader(`${info.stream_url}?client_id=a281614d7f34dc30b665dfcaa3ed7505`,`${info.artwork_url}`,`${info.title}`,`${info.user["username"]}`)'><v-icon name="play" />
+           <a  @click='get_aodiu'><v-icon name="play" />
             </a>
             <img  :src="info.artwork_url ?  info.artwork_url : info['user'].avatar_url" />
           </div>
@@ -22,10 +22,10 @@
           </div>
      </div>
   </div>
-   <Hello  :msg="related" />
+   <Hello :artist_id="id" />
   </div>
-  <div class="comments">
-      <div v-for="comment in   comments" :key="2">
+<div class="comments">
+      <div v-for="comment in   comments" :key="comment.id">
       <router-link :to="'/user/'+comment.user_id">
               <img :src="comment.user['avatar_url']" />
               <h3>{{comment.body}}</h3>
@@ -40,10 +40,11 @@
 
 <script>
 import Hello from "@/components/HelloWorld";
-import {mapActions} from 'vuex';
+import {mapGetters,mapActions} from 'vuex';
+
 
 export default {
-  name: 'home',
+  name: 'artist',
    data () {
     return {
       info: null,
@@ -56,39 +57,25 @@ export default {
   components:{
     Hello
   },
-
     methods:{
      fetchMusic(){
     this.axios
       .get(`https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/tracks/${this.id}?client_id=a281614d7f34dc30b665dfcaa3ed7505`)
       .then(response => {this.info = response.data;} )
     },
-     fetchUsers(){
-    this.axios
-      .get(`https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/tracks/${this.id}/related?client_id=a281614d7f34dc30b665dfcaa3ed7505`)
-      .then(response => {this.related = response.data;} )
-    },
     fetchcomments(){
    this.axios
      .get(`https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/tracks/${this.id}/comments?client_id=a281614d7f34dc30b665dfcaa3ed7505`)
      .then(response => {this.comments = response.data;} )
    },
-    ...mapActions(['fetchtodos','add_Audio']),
-    audio_loader(ulr,img,name,art){
-         let audios = {
-          name:name,
-          artist: art,
-          url:ulr,
-          cover: img,
-          lrc: 'https://cdn.moefe.org/music/lrc/thing.lrc',
-         };
-         this.add_Audio(audios);
-
-    },
-    },
+    get_aodiu(id){
+          this.$store.dispatch('get_song',this.info);
+    }
+  
+  },
+ 
     created(){
        this.fetchMusic();
-       this.fetchUsers();
        this.fetchcomments();
     },
      watch: {

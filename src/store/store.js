@@ -15,6 +15,11 @@ export const store = new Vuex.Store({
         
       } 
    ],
+   set_RelatedAudois:[
+    {
+      
+    } 
+   ],
    set_SingelAudois:[
        {
          
@@ -28,6 +33,9 @@ export const store = new Vuex.Store({
     },
     singelaudio(state){
         return state.set_SingelAudois;
+    },
+    relatedAudois(state){
+      return state.set_RelatedAudois;
     }
   },
   actions: {
@@ -35,8 +43,11 @@ export const store = new Vuex.Store({
        let {data} = await axios.get('https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/playlists/310189278?client_id=a281614d7f34dc30b665dfcaa3ed7505');
       commit('setAudois',data.tracks); 
       },
+      async relatedMusic({commit},id){
+        let {data} = await axios.get(`https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/tracks/${id}/related?client_id=a281614d7f34dc30b665dfcaa3ed7505`);
+       commit('set_Related',data); 
+       },
       get_song({commit},id_song){
-       console.log(id_song);
         commit('setAudoisSingel',id_song); 
       }
   },
@@ -44,14 +55,15 @@ export const store = new Vuex.Store({
     setAudois(state,audios){
           state.set_Audois = audios;
     },
+    set_Related(state,related){
+      state.set_RelatedAudois = related;
+    },
     setAudoisSingel(state,singel){
       state.set_SingelAudois = {
-
         "title": `${singel.title}`,
-        "url":`https://staskobzar.github.io/vue-audio-visual/file_example_MP3_1MG.mp3`,
+        "url":`https://api.soundcloud.com/tracks/${singel.id}/stream?client_id=a281614d7f34dc30b665dfcaa3ed7505`,
 
       };
-      console.log( state.set_SingelAudois )
     }
   },
 });

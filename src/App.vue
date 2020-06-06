@@ -7,12 +7,13 @@
     <router-view/>
 
     <div class="main-player">
-     <div class="main-player2">
-<!--             <aplayer :audio="singelaudio" :lrcType="3" :autoplay="true" />
- -->            
-   <av-waveform 
-      :audio-src="singelaudio.url"
-    ></av-waveform>
+     <div class="main-player2">          
+        <audio
+        controls
+        :src="singelaudio.url">
+            Your browser does not support the
+            <code>audio</code> element.
+    </audio>
    </div>
     </div>
   </div>
@@ -38,12 +39,16 @@ export default {
 
 
     .main-player2 {
-    .aplayer{
-      position:fixed;
       width:100%;
-      top:50%;
+      position:fixed;
       margin-top:3em;
       z-index:9999;
+      bottom: 0;
+      background:#42b983;
+      padding:1em;
+    audio{
+      width:100%;
+     
     }
     }
 
