@@ -1,20 +1,24 @@
 <template>
   <div>
-  <div class="related-tracks">
-  <div  v-if="load">
+  <div>
+  <div class="related-tracks" v-if="load">
     <div class="track" v-for="track in all_audios" :key="track.id">
      <a class="play" @click="get_aodiu(track)">Play</a>
-      <router-link :to="'/artist/'+track.id" tag="a">
           <img  :src="track.artwork_url ?  track.artwork_url : track['user'].avatar_url" />
+      <router-link :to="'/artist/'+track.id" tag="a" class="track__info">
+        <div class="description">
           <h3>{{track.title}}</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam ducimus iste ipsum repellat</p>
+        </div>  
       </router-link> 
     </div>
     </div>
-    <div v-else>
-    <div class="track" v-for="track in relatedAudois" :key="track.id">
+    <div class="related-tracks" v-else>
+    <div class="track" v-for="track in related_tracks" :key="track.id">
      <a class="play" @click="get_aodiu(track)">Play</a>
-      <router-link :to="'/artist/'+track.id" tag="a">
           <img  :src="track.artwork_url ?  track.artwork_url : track['user'].avatar_url" />
+      <router-link :to="'/artist/'+track.id" tag="a"  class="track__info">
+
           <h3>{{track.title}}</h3>
       </router-link> 
     </div>
@@ -26,15 +30,13 @@
 <script>
 import {mapGetters,mapActions} from 'vuex';
 export default {
-  name: 'HelloWorld',
-
-  props: ['load',"artist_id"],
+  name: 'musics',
+  props: ['load',"artist_id","related_tracks"],
   computed:{
-    ...mapGetters(["all_audios","relatedAudois"])
+    ...mapGetters(["all_audios"])
   },
    mounted () {
     this.$store.dispatch('fetchtodos');
-    this.$store.dispatch('relatedMusic',this.artist_id);
   },
   methods:{
     get_aodiu(id){
@@ -47,14 +49,24 @@ export default {
 
 <style scoped lang="scss">
 .related-tracks{
-   width:100%;
+   width:80%;
    display:grid;
-   grid-gap:10px;
-   grid-template-columns:repeat(3,1fr);
-   text-align:center;
+   grid-gap:20px;
+   margin:auto;
+   grid-template-columns:repeat(4,1fr);
+   font-family: sans-serif;
 }
 h3 {
-  margin: 40px 0 0;
+  margin: 9px  0 0;
+  padding-left:0.4em;
+  padding-right:0.4em;
+  padding-bottom:0.4em;
+
+}
+p{
+  padding-left:0.4em;
+  padding-right:0.4em;
+  
 }
 ul {
   list-style-type: none;
@@ -65,10 +77,17 @@ li {
   margin: 0 10px;
 }
 a {
-  color: #42b983;
+  color: #fff;
+  text-decoration: none;
 }
 .track{
   position: relative;
+  background-color:#192a56;
+  -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+  padding-bottom:0.7em;
+  height:auto;
    .play{
      position: absolute;
      width:24%;
@@ -89,10 +108,19 @@ a {
         display: flex;
     }
 }
+.description{
+   width:100%;
+   height:50%;
+  /*   text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: left;
+  display: block; */
+}
 img{
-
-   cursor: pointer;
-
+  width: 100%;
+  max-height:50vh;
+  cursor: pointer;
 }
 
 </style>

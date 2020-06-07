@@ -10,6 +10,7 @@
      <div class="main-player2">          
         <audio
         controls
+        autoplay
         :src="singelaudio.url">
             Your browser does not support the
             <code>audio</code> element.
@@ -44,8 +45,10 @@ export default {
       margin-top:3em;
       z-index:9999;
       bottom: 0;
-      background:#42b983;
+      background:#000;
       padding:1em;
+      padding-top:2em;
+      padding-bottom:2em;
     audio{
       width:100%;
      

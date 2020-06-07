@@ -22,7 +22,7 @@
           </div>
      </div>
   </div>
-   <Hello :artist_id="id" />
+   <Musics :artist_id="id" :related_tracks="relatedAudois" />
   </div>
 <div class="comments">
       <div v-for="comment in   comments" :key="comment.id">
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import Hello from "@/components/HelloWorld";
+import Musics from "@/components/Musics";
 import {mapGetters,mapActions} from 'vuex';
 
 
@@ -55,7 +55,13 @@ export default {
     }
   },
   components:{
-    Hello
+    Musics
+  },
+  computed:{
+    ...mapGetters(["relatedAudois"])
+  },
+   mounted () {
+    this.$store.dispatch('relatedMusic',this.id);
   },
     methods:{
      fetchMusic(){
