@@ -22,8 +22,9 @@
           </div>
      </div>
   </div>
-   <Musics :artist_id="id" :related_tracks="relatedAudois" />
   </div>
+   <Musics :key="id" :artist_id="id" :related_tracks="relatedAudois" />
+  
 <div class="comments">
       <div v-for="comment in   comments" :key="comment.id">
       <router-link :to="'/user/'+comment.user_id">
@@ -85,11 +86,13 @@ export default {
        this.fetchcomments();
     },
      watch: {
-          "$route.params.id"(val) {
-                   window.location.reload()
+          "$route.params.id"() {
+                  this.id= this.$route.params.id;
+                  this.fetchMusic();
+                  this.$store.dispatch('relatedMusic',this.id);
+                  this.fetchcomments();
           },
        },
-
 
   }
 </script>

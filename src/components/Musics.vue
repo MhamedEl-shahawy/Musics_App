@@ -1,6 +1,5 @@
 <template>
   <div>
-  <div>
   <div class="related-tracks" v-if="load">
     <div class="track" v-for="track in all_audios" :key="track.id">
      <a class="play" @click="get_aodiu(track)">Play</a>
@@ -18,12 +17,13 @@
      <a class="play" @click="get_aodiu(track)">Play</a>
           <img  :src="track.artwork_url ?  track.artwork_url : track['user'].avatar_url" />
       <router-link :to="'/artist/'+track.id" tag="a"  class="track__info">
-
+           <div class="description">
           <h3>{{track.title}}</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam ducimus iste ipsum repellat</p>
+        </div>  
       </router-link> 
     </div>
    </div>
-  </div>
   </div>
 </template>
 
@@ -43,7 +43,6 @@ export default {
          this.$store.dispatch('get_song',id);
     }
   }
-
 }
 </script>
 
