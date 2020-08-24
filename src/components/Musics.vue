@@ -6,17 +6,22 @@
          <a class="play" @click="get_aodiu(track)">Play</a>
           <img  class="related-tracks__main-cover" :src="track.artwork_url ?  track.artwork_url : track['user'].avatar_url" alt="cover"/>
         </div> 
-      <router-link :to="'/artist/'+track.id" tag="a" class="track__info">
+
         <div class="description">
+          <router-link :to="'/user/'+track.user_id" tag="a" class="track__info">
           <div class="relared-tracks__desc-container float">
           <img class="related-tracks__desc-img"  :src="track.artwork_url ?  track.artwork_url : track['user'].avatar_url" alt="cover"  />
           </div>
+          </router-link> 
           <div class="relared-tracks__desc-container flex">
+            <router-link :to="'/artist/'+track.id" tag="a" class="track__info">
           <h5 class="relared-tracks__desc-h4">{{track.title}}</h5>
+            </router-link> 
+          <router-link :to="'/user/'+track.user_id" tag="a" class="track__info">
           <p class="related-tracks__desc-p">{{track["user"].username}}</p>
+           </router-link> 
           </div>
         </div>  
-      </router-link> 
     </div>
     </div>
      <div class="related-tracks" v-else>
@@ -25,17 +30,23 @@
          <a class="play" @click="get_aodiu(track)">Play</a>
           <img  class="related-tracks__main-cover" :src="track.artwork_url ?  track.artwork_url : track['user'].avatar_url" alt="cover"/>
         </div> 
-      <router-link :to="'/artist/'+track.id" tag="a" class="track__info">
+      
         <div class="description">
+          <router-link :to="'/user/'+track.user_id" tag="a" class="track__info">
           <div class="relared-tracks__desc-container float">
           <img class="related-tracks__desc-img"  :src="track.artwork_url ?  track.artwork_url : track['user'].avatar_url" alt="cover"  />
           </div>
+           </router-link> 
           <div class="relared-tracks__desc-container flex">
+          <router-link :to="'/artist/'+track.id" tag="a" class="track__info">
           <h5 class="relared-tracks__desc-h4">{{track.title}}</h5>
+          </router-link> 
+          <router-link :to="'/user/'+track.user_id" tag="a" class="track__info">
           <p class="related-tracks__desc-p">{{track["user"].username}}</p>
+            </router-link> 
           </div>
         </div>  
-      </router-link> 
+      
     </div>
     </div>
   </div>
@@ -66,16 +77,13 @@ export default {
    display:grid;
    grid-gap:10px;
    margin:auto;
-   float: left;
    grid-template-columns:repeat(4,1fr);
    font-family: sans-serif;
    padding:1em;
 }
-
 p{
   padding-left:0.4em;
   padding-right:0.4em;
-  
 }
 ul {
   list-style-type: none;
@@ -92,18 +100,18 @@ a {
 .track{
   background-color:#fff;
   overflow: hidden;
-    box-shadow: 0 0 10px #e1e0e0;
-    height: 160px;
-    transition: all .2s ease;
-    padding: 1em 1em 0.4em 1em;
-    margin: 0.5em;  
-    white-space: nowrap;
+  box-shadow: 0 0 10px #e1e0e0;
+  height: 160px;
+  transition: all .2s ease;
+  padding: 1em 1em 0.4em 1em;
+  margin: 0.5em;  
+  white-space: nowrap;
   text-overflow: ellipsis;
 }
 .description{
-   width:100%;
-   height:100%;
-     white-space: nowrap;
+  width:100%;
+  height:100%;
+  white-space: nowrap;
   text-overflow: ellipsis;
   overflow-x: hidden;
 }
@@ -136,7 +144,6 @@ a {
   text-overflow: ellipsis;
   width: 100%;
   font-weight: bolder;
-
 }
 .flex{
   display: flex;
@@ -156,7 +163,8 @@ a {
      left:0%;
      top:0;
      background-color:rgba(46, 204, 113,.6);
-     align-items: center;
+     justify-content: center;
+      align-items:center;
     flex-direction: row;
     display:flex;
     justify-content: center;
@@ -190,6 +198,12 @@ a {
    grid-template-columns:repeat(3,1fr);
    padding:0em;
 }
+}
+@media only screen and (min-width: 1000px){
+  .related-tracks{
+   width:80%;
+   grid-gap:4px;
+  }
 }
 
 </style>
