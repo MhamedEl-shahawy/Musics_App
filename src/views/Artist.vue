@@ -4,8 +4,7 @@
   <div class="home">
      <div class="tracks_info">
          <div class="track">
-           <a  @click='get_aodiu'><v-icon name="play" />
-            </a>
+           <a  @click='get_aodiu'><v-icon name="play" /></a>
             <img  :src="info.artwork_url ?  info.artwork_url : info['user'].avatar_url" />
           </div>
           <div class="info_player">
@@ -97,10 +96,14 @@ export default {
   }
 </script>
 <style lang="scss" scoped>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
 .artist_tracks{
  width:100%;
  height:100%;
  padding:4em;
+ font-family: 'Roboto', sans-serif;
+
   .tracks_info{
    width:70%;
    height:180px;

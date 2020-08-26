@@ -40,7 +40,7 @@ export const store = new Vuex.Store({
   },
   actions: {
      async fetchtodos({commit}){
-       let {data} = await axios.get('https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/playlists/286483654?client_id=a281614d7f34dc30b665dfcaa3ed7505');
+       let {data} = await axios.get('https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/playlists/15077484?client_id=a281614d7f34dc30b665dfcaa3ed7505');
       commit('setAudois',data.tracks); 
       },
       async relatedMusic({commit},id){

@@ -46,7 +46,7 @@ var store = new _vuex["default"].Store({
             case 0:
               commit = _ref.commit;
               _context.next = 3;
-              return regeneratorRuntime.awrap(_axios["default"].get('https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/playlists/286483654?client_id=a281614d7f34dc30b665dfcaa3ed7505'));
+              return regeneratorRuntime.awrap(_axios["default"].get('https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/playlists/15077484?client_id=a281614d7f34dc30b665dfcaa3ed7505'));
 
             case 3:
               _ref2 = _context.sent;

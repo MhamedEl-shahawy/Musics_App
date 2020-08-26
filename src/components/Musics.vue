@@ -10,7 +10,7 @@
         <div class="description">
           <router-link :to="'/user/'+track.user_id" tag="a" class="track__info">
           <div class="relared-tracks__desc-container float">
-          <img class="related-tracks__desc-img"  :src="track.artwork_url ?  track.artwork_url : track['user'].avatar_url" alt="cover"  />
+          <img class="related-tracks__desc-img"  :src="track['user'].avatar_url ? track['user'].avatar_url : track.artwork_url" alt="cover"  />
           </div>
           </router-link> 
           <div class="relared-tracks__desc-container flex">
@@ -34,7 +34,7 @@
         <div class="description">
           <router-link :to="'/user/'+track.user_id" tag="a" class="track__info">
           <div class="relared-tracks__desc-container float">
-          <img class="related-tracks__desc-img"  :src="track.artwork_url ?  track.artwork_url : track['user'].avatar_url" alt="cover"  />
+          <img class="related-tracks__desc-img"  :src="track['user'].avatar_url?  track['user'].avatar_url : track.artwork_url" alt="cover"  />
           </div>
            </router-link> 
           <div class="relared-tracks__desc-container flex">
@@ -72,14 +72,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
 .related-tracks{
    width:100%;
    display:grid;
    grid-gap:10px;
    margin:auto;
    grid-template-columns:repeat(4,1fr);
-   font-family: sans-serif;
    padding:1em;
+   font-family: 'Roboto', sans-serif;
+
 }
 p{
   padding-left:0.4em;
