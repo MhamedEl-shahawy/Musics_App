@@ -6,9 +6,8 @@
       <router-link to="/" tag="li"> <span class="wrapper">Vue</span>Cloud</router-link> 
      </ul>
      </nav>
-    </header>
+    </header> 
     <router-view/>
-
     <div class="main-player">
      <div class="main-player2">          
         <audio
@@ -27,7 +26,6 @@
 </template>
 <script>
 import {mapGetters,mapActions} from 'vuex';
-
 export default {
   name: 'app',
 
@@ -91,11 +89,12 @@ export default {
   .footer{
     clear: both;
     width: 100%;
-    height: 7vh;
+    height: auto;
     background-color: #3A3F41;
     text-align: center;
     padding: 0.5em;
     font-size: 1.3em;
+    margin-top:1em;
   }
   .copyright{
      color:#42B883;

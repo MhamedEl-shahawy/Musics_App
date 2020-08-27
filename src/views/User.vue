@@ -18,16 +18,15 @@
      </div>
   </div>
   </div>
-   <Musics :key="id" :artist_id="id" :related_tracks="userTracks" />
-
+  <Spinner v-if="loading"/>
+  <Musics :key="id" :artist_id="id" :related_tracks="userTracks"  v-else/> 
 </div>
-
 </template>
 
 <script>
 import Musics from "@/components/Musics";
+import Spinner from "@/components/Spinner";
 import {mapGetters,mapActions} from 'vuex';
-
 
 export default {
   name: 'user',
@@ -37,12 +36,12 @@ export default {
       id:this.$route.params.id,
       related:null,
       comments:null,
-      userTracks:null
-
+      userTracks:null,
+      loading:true,
     }
   },
   components:{
-    Musics
+    Musics,Spinner
   },
    mounted () {
      this.getUserTracks();
@@ -56,10 +55,11 @@ export default {
     getUserTracks(){
          this.axios
      .get(`https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/users/${this.id}/tracks?client_id=a281614d7f34dc30b665dfcaa3ed7505`)
-     .then(response => {this.userTracks = response.data;} )
-        
+     .then(response => {
+       this.userTracks = response.data; 
+       this.loading = false;
+       })   
     }
-  
   },
  
     created(){
