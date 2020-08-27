@@ -147,6 +147,7 @@ a {
   text-overflow: ellipsis;
   width: 100%;
   font-weight: bolder;
+  
 }
 .flex{
   display: flex;

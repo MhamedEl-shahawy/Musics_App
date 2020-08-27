@@ -2,7 +2,7 @@
   <div id="app">
     <header>
      <nav class="nav">
-     <ul>
+     <ul class="nav-wrapper">
       <router-link to="/" tag="li"> <span class="wrapper">Vue</span>Cloud</router-link> 
      </ul>
      </nav>
@@ -75,7 +75,7 @@ export default {
      color:#42B883;
      text-transform:uppercase;
   }
-  ul{
+  .nav-wrapper{
     list-style:none;
     width:100%;
     text-align:center;
