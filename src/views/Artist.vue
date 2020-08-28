@@ -4,7 +4,7 @@
   <div class="home">
      <div class="tracks_info">
          <div class="track">
-           <!-- <a  @click='get_aodiu'><v-icon name="play" /></a> -->
+           <a class="playing"  @click='get_aodiu'><v-icon scale="2" name="play" /></a> 
             <img  :src="info.artwork_url ?  info.artwork_url : info['user'].avatar_url" />
           </div class="container">
           <div class="info_player">
@@ -123,10 +123,25 @@ export default {
 }
 
 .track{
+  position:relative;
   height: 100%;
   width:20%;
   margin-bottom:0.5em;
   float:left;
+  cursor:pointer;
+  transition:0.3s;
+  &:hover .playing{
+     display:block;
+  }
+}
+.playing{
+   position: absolute;
+   left:50%;
+   top:50%;
+   transform:translate(-50%,-50%);
+  transition:0.3s;
+  cursor:pointer;
+  display:none;
 }
 .info_player{
    width:70%;
@@ -171,5 +186,8 @@ export default {
 .main-info{
    display: flex;
    width:50%;
+}
+ .playing svg{
+  color:#42B883;
 }
 </style>

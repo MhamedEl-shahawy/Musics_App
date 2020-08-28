@@ -1,19 +1,21 @@
 <template>
 <div>
-<div class="artist_tracks">
+<div class="user_profile">
   <div class="home">
      <div class="tracks_info">
          <div class="track">
-            <img  :src="info.avatar_url" />
+            <img  class="track-avatar" :src="info.avatar_url" />
           </div>
           <div class="info_player">
-            <h3>{{this.info.full_name}}</h3>
+            <a :href="info.permalink_url" target="_blank" class="sound-profile"> <h3 class="info-title">{{this.info.full_name || this.info.username}}</h3></a>
             
-              <ul>
-               <li><v-icon name="comments" /> {{ this.info.followers_count}}</li>
-               <li><v-icon name="heart" /> {{ this.info.followings_count}}</li>
-               <li><v-icon name="play" /> {{ this.info.track_count}}</li>
+              <ul class="info-list">
+               <li><v-icon name="user"  scale="2"/> <br><span class="wrapper-icon">{{ this.info.followings_count}}</span></li>
+               <li><v-icon name="users" scale="3" /><br> <span class="wrapper-icon">{{ this.info.followers_count}}</span></li>
+               <li><v-icon name="play" scale="2"/><br> <span class="wrapper-icon">{{ this.info.track_count}}</span></li>
               </ul>
+              <p class="desc">{{this.info.description}}</p>
+              <a class="website" v-if="info.website" :href="info.website" target="_blank">{{this.info.website_title || this.info.full_name || this.info.username}}</a>
           </div>
      </div>
   </div>
@@ -77,24 +79,61 @@ export default {
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
-.artist_tracks{
- width:100%;
- height:100%;
- padding:4em;
- font-family: 'Roboto', sans-serif;
-
-  .tracks_info{
-   width:70%;
-   height:180px;
-   background-color:#f00;
-    .track{
-        position:relative;
-        display:inline-block;
-    }
-    .info_player{
-    position:relative;
-    display:inline-block;
-    }
-  }
+.user_profile{
+   width:80%;
+   height:auto;
+   overflow:hidden;
+   text-align:center;
+   margin:auto;
+   margin-top:1em;
+   padding:1em;
+    font-family: 'Roboto', sans-serif;
+    color:#303133;
+   background-color:#fff;
+   box-shadow: 0 0 10px #e1e0e0;
+   font-smoothing: antialiased;
+}
+.home{
+   width:100%;
+}
+.track{
+   width:100%;
+}
+.info-title{
+   font-size:1.6em;
+   line-height:50px;
+}
+.track-avatar{
+   border:1px solid #f1f1f1;
+   border-radius:100%;
+   width:120px;
+   height:120px;
+}
+.sound-profile{
+    text-decoration:none;
+    color:#303133;
+}
+.info-list{
+  width:100%;
+  list-style:none;
+  display:flex;
+  justify-content:center;
+}
+.info-list li{
+   margin:15px;
+   color:#A1A1A1;
+}  
+.desc{
+   width:100%;
+   color:#999A9B;
+   line-height:28px;
+}
+.website{
+   margin:1em;
+   color:#42B883;
+}
+.wrapper-icon{
+   padding-top:7px;
+     font-size:1.3em;
 }
 </style>
