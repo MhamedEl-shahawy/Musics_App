@@ -3,7 +3,7 @@
   <div class="related-tracks" v-if="load">
     <div class="track" v-for="track in all_audios" :key="track.id">
         <div class="related-tracks__container">
-         <a class="play" @click="get_aodiu(track)">Play</a>
+        <a class="playing"  @click='get_aodiu(track)'><v-icon scale="2" name="play" /></a> 
           <img  class="related-tracks__main-cover" :src="track.artwork_url ?  track.artwork_url : track['user'].avatar_url" alt="cover"/>
         </div> 
 
@@ -27,7 +27,7 @@
      <div class="related-tracks" v-else>
     <div class="track" v-for="track in related_tracks" :key="track.id">
         <div class="related-tracks__container">
-         <a class="play" @click="get_aodiu(track)">Play</a>
+        <a class="playing"  @click='get_aodiu(track)'><v-icon scale="2" name="play" /></a> 
           <img  class="related-tracks__main-cover" :src="track.artwork_url ?  track.artwork_url : track['user'].avatar_url" alt="cover"/>
         </div> 
       
@@ -110,6 +110,10 @@ a {
   margin: 0.5em;  
   white-space: nowrap;
   text-overflow: ellipsis;
+  &:hover{
+    box-shadow: 0 0 18px #c9c9c9;
+  }
+ 
 }
 .description{
   width:100%;
@@ -141,6 +145,9 @@ a {
     width: 100%;
   height:60%;
   cursor: pointer;
+  &:hover .playing{
+    display: flex;
+  }
 }
 .relared-tracks__desc-h4{
   padding-top:2px;
@@ -160,25 +167,20 @@ a {
   width: 100%;
   height:100%;
 }
-.play{
-     position: absolute;
-     width:100%;
-     height:100%;
-     left:0%;
-     top:0;
-     background-color:rgba(46, 204, 113,.6);
-     justify-content: center;
-      align-items:center;
-    flex-direction: row;
-    display:flex;
-    justify-content: center;
-    cursor: pointer;
-    color:#e74c3c;
-    font-size:1.3em;
-    font-weight: bolder;
-    opacity: 0;
-    transition: all 0.4s;
-  }
+  .playing{
+   position: absolute;
+   left:50%;
+   width:100%;
+   height: 100%;
+   background-color:rgba(242,247,240,.7);
+   top:50%;
+   transform:translate(-50%,-50%);
+  transition:0.3s;
+  cursor:pointer;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
   .related-tracks__container:hover .play{
      opacity:1;
   }
@@ -190,6 +192,10 @@ a {
   padding-top:5px;
   width: 100%;
   font-size: 0.9rem;
+  &:hover{
+      color:#A1A1A1;
+
+  }
 }
 @media only screen and (min-width: 320px) and(max-width: 600px) {
   .related-tracks{
@@ -209,5 +215,7 @@ a {
    grid-gap:4px;
   }
 }
-
+ .playing svg{
+  color:#42B883;
+}
 </style>

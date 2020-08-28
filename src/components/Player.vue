@@ -1,34 +1,23 @@
 <template>
-  <div id="app">
-    <header>
-     <nav class="nav">
-     <ul class="nav-wrapper">
-      <router-link to="/" tag="li"> <span class="wrapper">Vue</span>Cloud</router-link> 
-     </ul>
-     </nav>
-    </header> 
-    <router-view/>
-   <Player :play="singelaudio.url" />
-    <footer class="footer">
-       <h4 class="copyright"> © 2020 create by <a class="footer__owner" href="https://github.com/MhamedEl-shahawy" target="_blank"> @MhamedEl-shahawy (github)</a> all rights reserved</h4>
-    </footer>
+  <div>
+    <div class="main-player"  v-if="play">
+     <div class="main-player2">          
+        <audio
+       
+        controls
+        autoplay
+        :src="play">
+            Your browser does not support the
+            <code>audio</code> element.
+    </audio>
+   </div>
+    </div>
   </div>
 </template>
 <script>
-import Player from "./components/Player";
-import {mapGetters,mapActions} from 'vuex';
 export default {
-  name: 'app',
-  components: {
-    Player
-  },
-  computed:{
-    ...mapGetters(["singelaudio"])
-  },  
- mounted () {
-    this.$store.dispatch('get_song');
-  }
-
+  name: 'player',
+  props: ["play"],
 }
 
 </script>

@@ -6,7 +6,7 @@
          <div class="track">
            <a class="playing"  @click='get_aodiu'><v-icon scale="2" name="play" /></a> 
             <img  :src="info.artwork_url ?  info.artwork_url : info['user'].avatar_url" />
-          </div class="container">
+          </div>
           <div class="info_player">
             <h3>{{this.info.title}}</h3>
             <div class="main-info">
@@ -129,9 +129,9 @@ export default {
   margin-bottom:0.5em;
   float:left;
   cursor:pointer;
-  transition:0.3s;
+  transition:0.4s all;
   &:hover .playing{
-     display:block;
+     display:flex;
   }
 }
 .playing{
@@ -142,6 +142,13 @@ export default {
   transition:0.3s;
   cursor:pointer;
   display:none;
+  justify-content: center;
+  align-items: center;
+     background-color:rgba(31,31,31,.7);
+   width: 100%;
+   height: 100%;
+     transition:0.4s all;
+
 }
 .info_player{
    width:70%;
@@ -188,6 +195,6 @@ export default {
    width:50%;
 }
  .playing svg{
-  color:#42B883;
+  color:#fff;
 }
 </style>
