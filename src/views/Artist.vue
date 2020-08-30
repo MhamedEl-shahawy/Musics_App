@@ -25,8 +25,8 @@
      </div>
   </div>
   </div>
-  
-   <Musics :key="id" :artist_id="id" :related_tracks="relatedAudois"   />
+   <Musics :key="id" :artist_id="id" :related_tracks="relatedAudois"  v-if="!relatedAudois[0].load"  />
+   <Spinner v-else/>
    <Spinner v-if="loading"/>
 <div class="comments" v-else>
       <div v-for="comment in   comments" :key="comment.id">
@@ -71,12 +71,12 @@ export default {
     methods:{
      fetchMusic(){
     this.axios
-      .get(`https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/tracks/${this.id}?client_id=a281614d7f34dc30b665dfcaa3ed7505`)
+      .get(`https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/tracks/${this.id}?client_id=${ process.env.VUE_APP_client_id}`)
       .then(response => {this.info = response.data; } )
     },
     fetchcomments(){
    this.axios
-     .get(`https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/tracks/${this.id}/comments?client_id=a281614d7f34dc30b665dfcaa3ed7505`)
+     .get(`https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/tracks/${this.id}/comments?client_id=${ process.env.VUE_APP_client_id}`)
      .then(response => {this.comments = response.data;this.loading=false;} )
    },
     get_aodiu(id){
@@ -120,6 +120,8 @@ export default {
    justify-content:center;
   margin: 0.5em;
   padding:1em;
+    overflow: hidden;
+
 }
 
 .track{

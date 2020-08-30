@@ -19,6 +19,7 @@ _vue["default"].use(_vuex["default"]);
 
 _vue["default"].use(_vueAxios["default"], _axios["default"]);
 
+var clientId = process.env.client_id;
 var store = new _vuex["default"].Store({
   state: {
     set_Audois: [{}],
@@ -46,7 +47,7 @@ var store = new _vuex["default"].Store({
             case 0:
               commit = _ref.commit;
               _context.next = 3;
-              return regeneratorRuntime.awrap(_axios["default"].get('https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/playlists/15077484?client_id=a281614d7f34dc30b665dfcaa3ed7505'));
+              return regeneratorRuntime.awrap(_axios["default"].get("https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/playlists/420190580?client_id=".concat(clientId)));
 
             case 3:
               _ref2 = _context.sent;
@@ -69,7 +70,7 @@ var store = new _vuex["default"].Store({
             case 0:
               commit = _ref3.commit;
               _context2.next = 3;
-              return regeneratorRuntime.awrap(_axios["default"].get("https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/tracks/".concat(id, "/related?client_id=a281614d7f34dc30b665dfcaa3ed7505")));
+              return regeneratorRuntime.awrap(_axios["default"].get("https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/tracks/".concat(id, "/related?client_id=").concat(clientId)));
 
             case 3:
               _ref4 = _context2.sent;
@@ -98,7 +99,7 @@ var store = new _vuex["default"].Store({
     setAudoisSingel: function setAudoisSingel(state, singel) {
       state.set_SingelAudois = {
         "title": "".concat(singel.title),
-        "url": "https://api.soundcloud.com/tracks/".concat(singel.id, "/stream?client_id=a281614d7f34dc30b665dfcaa3ed7505")
+        "url": "https://api.soundcloud.com/tracks/".concat(singel.id, "/stream?client_id=").concat(clientId)
       };
     }
   }

@@ -3,7 +3,7 @@
     <header>
      <nav class="nav">
      <ul class="nav-wrapper">
-      <router-link to="/" tag="li"> <span class="wrapper">Vue</span>Cloud</router-link> 
+      <router-link to="/" tag="li" class="nav-wrapper__li"> <span class="wrapper">Vue</span>Cloud</router-link> 
      </ul>
      </nav>
     </header> 
@@ -35,23 +35,7 @@ export default {
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
-    .main-player2 {
-      width:100%;
-      position:fixed;
-      margin-top:3em;
-      z-index:9999;
-      bottom: 0%;
-      background:#000;
-      height: 7vh; 
-      padding:0.5em;
-    }
-       audio{
-      width:100%;
-      margin-top:10px;
-      margin: auto;
-      height: 100%;
-    }
-  header{
+ header{
     width:100%;
   }
   .nav{
@@ -73,10 +57,13 @@ export default {
     text-align:center;
     height:100%;
     display:flex;
-    cursor: pointer;
+   
     justify-content: center;
     flex-direction: row;
     align-items:center;
+  }
+  .nav-wrapper__li{
+ cursor: pointer;
   }
   .footer{
     clear: both;

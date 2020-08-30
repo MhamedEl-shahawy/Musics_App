@@ -5,7 +5,7 @@ import VueAxios from 'vue-axios'
 
 Vue.use(Vuex);
 Vue.use(VueAxios, axios)
-
+let clientId = process.env.VUE_APP_client_id;
 
 
 export const store = new Vuex.Store({
@@ -16,6 +16,7 @@ export const store = new Vuex.Store({
       } 
    ],
    set_RelatedAudois:[
+     
     {
       
     } 
@@ -40,11 +41,11 @@ export const store = new Vuex.Store({
   },
   actions: {
      async fetchtodos({commit}){
-       let {data} = await axios.get('https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/playlists/420190580?client_id=a281614d7f34dc30b665dfcaa3ed7505');
+       let {data} = await axios.get(`https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/playlists/420190580?client_id=${clientId}`);
       commit('setAudois',data.tracks); 
       },
       async relatedMusic({commit},id){
-        let {data} = await axios.get(`https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/tracks/${id}/related?client_id=a281614d7f34dc30b665dfcaa3ed7505`);
+        let {data} = await axios.get(`https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/tracks/${id}/related?client_id=${clientId}`);
        commit('set_Related',data); 
        },
       get_song({commit},id_song){
@@ -61,7 +62,7 @@ export const store = new Vuex.Store({
     setAudoisSingel(state,singel){
       state.set_SingelAudois = {
         "title": `${singel.title}`,
-        "url":`https://api.soundcloud.com/tracks/${singel.id}/stream?client_id=a281614d7f34dc30b665dfcaa3ed7505`,
+        "url":`https://api.soundcloud.com/tracks/${singel.id}/stream?client_id=${clientId}`,
 
       };
     }

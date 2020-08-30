@@ -40,6 +40,8 @@ export default {
       comments:null,
       userTracks:null,
       loading:true,
+     
+
     }
   },
   components:{
@@ -51,12 +53,12 @@ export default {
     methods:{
      fetchMusic(){
     this.axios
-      .get(`https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/users/${this.id}?client_id=a281614d7f34dc30b665dfcaa3ed7505`)
+      .get(`https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/users/${this.id}?client_id=${ process.env.VUE_APP_client_id}`)
       .then(response => {this.info = response.data;} )
     },
     getUserTracks(){
          this.axios
-     .get(`https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/users/${this.id}/tracks?client_id=a281614d7f34dc30b665dfcaa3ed7505`)
+     .get(`https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/users/${this.id}/tracks?client_id=${ process.env.VUE_APP_client_id}`)
      .then(response => {
        this.userTracks = response.data; 
        this.loading = false;
