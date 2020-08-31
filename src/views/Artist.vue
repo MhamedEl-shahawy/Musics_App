@@ -29,13 +29,17 @@
    <Spinner v-else/>
    <Spinner v-if="loading"/>
 <div class="comments" v-else>
-      <div v-for="comment in   comments" :key="comment.id">
-      <router-link :to="'/user/'+comment.user_id">
-              <img :src="comment.user['avatar_url']" />
-              <h3>{{comment.body}}</h3>
-              <h3>{{comment.user['username']}}</h3>
+      <div v-for="comment in   comments" :key="comment.id" class="comment__wrapper"> 
+      <router-link  class="comment__user-forward" :to="'/user/'+comment.user_id">
+              <img class="comment__cover" :src="comment.user['avatar_url']" />
+               </router-link>
+     <p class="time">{{comment.created_at}}</p>
 
-       </router-link>
+              <div class="comment__container">
+              <p class="comment__body">{{comment.body}}</p>
+             
+
+             </div>
       </div>
   </div>
 </div>
@@ -81,7 +85,7 @@ export default {
    },
     get_aodiu(id){
           this.$store.dispatch('get_song',this.info);
-    }
+    },
   
   },
  
@@ -198,5 +202,51 @@ export default {
 }
  .playing svg{
   color:#fff;
+}
+.comments{
+   width: 80%;
+   overflow:hidden;
+   margin:auto;
+    height:auto;
+ margin:auto;
+ padding:1em;
+}
+.comment__wrapper{
+  float:left;
+   width:100%;
+   height: 100px;
+   background:#fff;
+   margin-left:1em;
+   margin-right:1em;
+  padding:1em;
+  border:1px solid #f1f1f1;
+}
+.comment__user-forward{
+  text-decoration:none;
+}
+.comment__cover{
+   width: 70px;
+   height:70px;
+   border-radius:100%;
+   border:1px solid #f1f1f1;
+   float:left; 
+   margin-right:1em;
+}
+.comment__container{
+
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+  text-overflow: ellipsis;
+}
+.comment__body{
+   font-size:1.2em;
+   color:#777;
+    font-family: 'Roboto', sans-serif;
+}
+.time{
+   float:right; 
+   margin-top:5px;
 }
 </style>

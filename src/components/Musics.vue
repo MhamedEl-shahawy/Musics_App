@@ -1,7 +1,7 @@
 <template>
   <div>
   <div class="related-tracks" v-if="load">
-    <div class="track" v-for="track in all_audios" :key="track.id">
+    <div class="track" v-for="track in (searchTracks || all_audios)" :key="track.id">
         <div class="related-tracks__container">
         <a class="playing"  @click='get_aodiu(track)'><v-icon scale="2" name="play" /></a> 
           <img  class="related-tracks__main-cover" :src="track.artwork_url ?  track.artwork_url : track['user'].avatar_url" alt="cover"/>
@@ -57,6 +57,12 @@ import {mapGetters,mapActions} from 'vuex';
 export default {
   name: 'musics',
   props: ['load',"artist_id","related_tracks"],
+  data(){
+    return{
+     searchTracks:"",
+     search:this.$route.params.name
+  }
+  },
   computed:{
     ...mapGetters(["all_audios"])
   },
@@ -66,7 +72,33 @@ export default {
   methods:{
     get_aodiu(id){
          this.$store.dispatch('get_song',id);
-    }
+    },
+     searchFiders(){
+      this.axios
+        .get(`https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/tracks?q=${this.$route.params.name}
+        &client_id=${process.env.VUE_APP_client_id}`)
+     .then(response => {
+       (this.$route.params.name != undefined ) ? 
+       this.searchTracks = response.data : this.searchTracks = ""
+       }
+       )    
+    },
+    
+  },
+   
+  watch: {
+          "$route.params.name"() {
+                  this.searchFiders();       
+          },
+    },
+   mounted(){
+    let self = this;
+    setTimeout(function() {
+      self.$nextTick(function() {
+         this.searchFiders();  
+      })
+
+    }, 2000);
   }
 }
 </script>
@@ -82,7 +114,7 @@ export default {
    grid-template-columns:repeat(4,1fr);
    padding:1em;
    font-family: 'Roboto', sans-serif;
-
+  
 }
 p{
   padding-left:0.4em;

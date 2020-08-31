@@ -4,6 +4,8 @@
      <nav class="nav">
      <ul class="nav-wrapper">
       <router-link to="/" tag="li" class="nav-wrapper__li"> <span class="wrapper">Vue</span>Cloud</router-link> 
+      <li class="nav-wrapper__li"><input type="text"  @keyup.enter="goForward" placeholder="search" v-model="search" /></li>
+      
      </ul>
      </nav>
     </header> 
@@ -27,7 +29,12 @@ export default {
   },  
  mounted () {
     this.$store.dispatch('get_song');
-  }
+  },
+  methods: {
+    goForward(){
+      this.$router.push(`/${this.search}`)
+    }
+  },
 
 }
 

@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <Spinner v-if="loading" />
-    <Musics load="done" v-else />
+    <!-- <Spinner v-if="loading" /> -->
+    <Musics load="done"  />
   </div>
 </template>
 
@@ -20,14 +20,14 @@ export default {
       loading:true,
     }
   },
-  mounted(){
-    let self = this;
-    setTimeout(function() {
-      self.$nextTick(function() {
-        self.loading = false;
-      })
+  // mounted(){
+  //   let self = this;
+  //   setTimeout(function() {
+  //     self.$nextTick(function() {
+  //       self.loading = false;
+  //     })
 
-    }, 2000);
-  }
+  //   }, 2000);
+  // }
 }
 </script>
