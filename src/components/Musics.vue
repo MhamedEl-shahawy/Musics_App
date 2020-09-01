@@ -66,8 +66,15 @@ export default {
   computed:{
     ...mapGetters(["all_audios"])
   },
-   mounted () {
+   mounted(){
     this.$store.dispatch('fetchtodos');
+    let self = this;
+    setTimeout(function() {
+      self.$nextTick(function() {
+         this.searchFiders();  
+      })
+
+    }, 2000);
   },
   methods:{
     get_aodiu(id){
@@ -76,7 +83,7 @@ export default {
      searchFiders(){
       this.axios
         .get(`https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/tracks?q=${this.$route.params.name}
-        &client_id=${process.env.VUE_APP_client_id}`)
+        &client_id=${(process.env.NODE_ENV !== 'production')? process.env.VUE_APP_client_id: process.env.client_id }`)
      .then(response => {
        (this.$route.params.name != undefined ) ? 
        this.searchTracks = response.data : this.searchTracks = ""
@@ -91,15 +98,7 @@ export default {
                   this.searchFiders();       
           },
     },
-   mounted(){
-    let self = this;
-    setTimeout(function() {
-      self.$nextTick(function() {
-         this.searchFiders();  
-      })
 
-    }, 2000);
-  }
 }
 </script>
 

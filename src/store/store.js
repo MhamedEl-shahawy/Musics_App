@@ -4,8 +4,14 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 
 Vue.use(Vuex);
-Vue.use(VueAxios, axios)
-let clientId = process.env.VUE_APP_client_id;
+Vue.use(VueAxios, axios);
+let clientId;
+if( process.env.NODE_ENV !== 'production'){
+   clientId = process.env.VUE_APP_client_id;
+}else{
+   clientId = process.env.client_id;
+}
+
 
 
 export const store = new Vuex.Store({

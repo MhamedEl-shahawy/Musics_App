@@ -75,12 +75,12 @@ export default {
     methods:{
      fetchMusic(){
     this.axios
-      .get(`https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/tracks/${this.id}?client_id=${ process.env.VUE_APP_client_id}`)
+      .get(`https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/tracks/${this.id}?client_id=${ (process.env.NODE_ENV !== 'production')? process.env.VUE_APP_client_id: process.env.client_id }`)
       .then(response => {this.info = response.data; } )
     },
     fetchcomments(){
    this.axios
-     .get(`https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/tracks/${this.id}/comments?client_id=${ process.env.VUE_APP_client_id}`)
+     .get(`https://cors-anywhere.herokuapp.com/https://api.soundcloud.com/tracks/${this.id}/comments?client_id=${(process.env.NODE_ENV !== 'production')? process.env.VUE_APP_client_id: process.env.client_id }`)
      .then(response => {this.comments = response.data;this.loading=false;} )
    },
     get_aodiu(id){
