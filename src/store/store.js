@@ -6,10 +6,11 @@ import VueAxios from 'vue-axios'
 Vue.use(Vuex);
 Vue.use(VueAxios, axios);
 let clientId;
-if( process.env.NODE_ENV !== 'production'){
-   clientId = process.env.VUE_APP_client_id;
-}else{
+if( process.env.NODE_ENV === 'production'){
    clientId = process.env.client_id;
+   
+}else{
+   clientId = process.env.VUE_APP_client_id;
 }
 
 

@@ -1,7 +1,7 @@
 .DS_Store
 node_modules
 /dist
-netlify.toml
+/netlify.toml
 .netlify
 # local env files
 .env.local
