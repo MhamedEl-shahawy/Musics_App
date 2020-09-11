@@ -228,7 +228,7 @@ a {
 
   }
 }
-@media only screen and (min-width: 320px) and(max-width: 600px) {
+@media only screen and (max-width: 600px) {
   .related-tracks{
    grid-template-columns:repeat(1,1fr);
    padding:0em;

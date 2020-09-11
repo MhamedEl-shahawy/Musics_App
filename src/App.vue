@@ -4,7 +4,7 @@
      <nav class="nav">
      <ul class="nav-wrapper">
       <router-link to="/" tag="li" class="nav-wrapper__li"> <span class="wrapper">Vue</span>Cloud</router-link> 
-      <li class="nav-wrapper__li"><input type="text"  @keyup.enter="goForward" placeholder="search" v-model="search" /></li>
+      <li class="nav-wrapper__li search"><input type="text"  @keyup.enter="goForward" placeholder="Search Musics..." v-model="search" /></li>
       
      </ul>
      </nav>
@@ -47,7 +47,7 @@ export default {
   }
   .nav{
     width: 100%;
-    height: 50px;
+    height: 8vh;
     font-family: 'Roboto', sans-serif;
     font-weight: bolder;
     background-color:#3A3F41;
@@ -60,18 +60,22 @@ export default {
   }
   .nav-wrapper{
     list-style:none;
-    width:100%;
-    text-align:center;
+    width:70%;
     height:100%;
     display:flex;
-   
-    justify-content: center;
-    flex-direction: row;
-    align-items:center;
+    justify-content:space-around; 
+    margin:auto;
   }
   .nav-wrapper__li{
- cursor: pointer;
+    cursor: pointer;
+     width: 50%;
   }
+   .search input{
+     border:none;
+    border-radius:5px; 
+    padding:0.4em;
+    width:70%;
+  } 
   .footer{
     clear: both;
     width: 100%;
@@ -93,5 +97,20 @@ export default {
   }
   .footer__owner:hover{
     color:#fff;
+  }
+  @media only screen and (max-width: 1100px){
+    .nav{
+       padding:1em;
+       height:auto;
+    }
+      .nav-wrapper{
+       flex-direction:column;
+       margin-top:10px;
+       width:100%;
+      }
+      .nav-wrapper__li{
+       display:block;
+       width:100%;
+      }
   }
 </style>
